@@ -6,7 +6,7 @@ import Price from './Price'
 
 const Product = ({ product }) => {
   return (
-    <ListGroup.Item className="d-flex justify-content-between align-items-stretch">
+    <ListGroup.Item className="d-flex justify-content-between align-items-stretch" style={{paddingLeft: '0'}}>
       <Col sm={2}><Image img={product.property.previewImage} promo={product.offer.promotion}></Image></Col>
       <Col sm={8}>
         <Details title={product.property.title} address={product.property.address} offer={product.offer} rating={product.property.rating}></Details>

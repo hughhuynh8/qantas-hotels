@@ -34,7 +34,13 @@ Install dependencies
   npm install
 ```
 
-Start the server
+Start the REST server
+
+```bash
+  npm run server
+```
+
+Start the application server
 
 ```bash
   npm run start

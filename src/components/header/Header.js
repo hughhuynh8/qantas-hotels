@@ -5,7 +5,7 @@ import './Header.css'
 const Header = ({ homeUrl, imgUrl, altText }) => {
   return (
     <div>
-      <Navbar bg="light" expand="lg">
+      <Navbar expand="lg">
         <Container>
           <Navbar.Brand href={homeUrl}><img src={imgUrl} alt={altText} /></Navbar.Brand>
         </Container>
