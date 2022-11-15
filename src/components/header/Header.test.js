@@ -1,5 +1,5 @@
 import '@testing-library/jest-dom'
-import { cleanup, fireEvent, render, screen } from "@testing-library/react"
+import { cleanup, render, screen } from "@testing-library/react"
 import Header from './Header'
 
 afterEach(() => {
