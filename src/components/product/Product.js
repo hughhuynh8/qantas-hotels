@@ -1,13 +1,22 @@
 import React from 'react'
-import { Col, Row } from 'react-bootstrap'
+import { Col, ListGroup } from 'react-bootstrap'
+import Details from './Details'
+import Image from './Image'
+import Price from './Price'
 
 const Product = ({ product }) => {
   return (
-    <Row>
-      <Col sm={2}>{product.property.previewImage.url}</Col>
-      <Col sm={8}>{product.property.title}</Col>
-      <Col sm={2}>{product.offer.displayPrice.amount}</Col>
-    </Row>
+    <ListGroup.Item className="d-flex justify-content-between align-items-stretch">
+      <Col sm={2}><Image img={product.property.previewImage} promo={product.offer.promotion}></Image></Col>
+      <Col sm={8}>
+        <Details title={product.property.title} address={product.property.address} offer={product.offer} rating={product.property.rating}></Details>
+      </Col>
+      <Col sm={2}>
+        <Price price={product.offer.displayPrice.amount} currency={product.offer.displayPrice.currency} nights={1} savings={product.offer?.savings?.amount}  />
+        {/* <Price price={123} currency="AUD" nights={1} savings={null} /> */}
+        
+      </Col>
+    </ListGroup.Item>
   )
 }
 

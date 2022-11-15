@@ -1,0 +1,13 @@
+.product-card {
+  border-radius: 0;
+}
+.product-image {
+  border-radius: 0;
+}
+.product-badge {
+  border-radius: 0;
+  color: red;
+}
+.card-img-overlay {
+  padding: 4px 0;
+}

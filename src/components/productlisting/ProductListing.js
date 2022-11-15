@@ -1,13 +1,14 @@
 import React from 'react'
+import { ListGroup } from 'react-bootstrap'
 import Product from '../product/Product'
 
 const ProductListing = ({ products }) => {
   return (
-    <div>
+    <ListGroup variant="flush">
       {products.map((product) => 
         <Product key={product.id} product={product}></Product>
       )}
-    </div>
+    </ListGroup>
   )
 }
 
