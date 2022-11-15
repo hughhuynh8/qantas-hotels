@@ -7,7 +7,4 @@ afterEach(() => {
 })
 
 test("it should have the correct title", () => {
-    render(<App/>)
-    const text = screen.getByRole('heading', { name: /Qantas/i })
-    expect(text).toBeInTheDocument()   
 })
