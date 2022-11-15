@@ -47,6 +47,14 @@ Start the server
 Open http://localhost:3000 through the browser.
 
 
+### Test
+
+Run the tests
+
+```bash
+  npm run test
+```
+
 
 ## License
 

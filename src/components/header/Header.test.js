@@ -7,14 +7,14 @@ afterEach(() => {
 })
 
 describe('The header component', () => {
-    test('alt contains correct value', () => {
+    test('should show correct alt value', () => {
       const altText = "image alt text for the logo"
       render(<Header imgSrc="../../images/logo.png" altText={altText}/>)
       const testImage = screen.queryByRole("img")
       expect(testImage).toHaveAttribute('alt', altText);
     })
   
-    test('contains correct homepage link', () => {
+    test('should contain correct homepage link', () => {
         const homepageUrl = "/home/page"
         render(<Header homeUrl={homepageUrl} />)
         const testLink = screen.getByRole("link")
