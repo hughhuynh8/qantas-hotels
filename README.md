@@ -1,5 +1,5 @@
 
-# Qantas Hotels
+# Qantas Group Accommodation Front-End Code Test
 
 
 ## 📖 Introduction
@@ -60,6 +60,19 @@ Run the tests
 ```bash
   npm run test
 ```
+
+
+## Approach
+
+Began with TDD. Wrote unit tests for Header, Sort and Summary before implementing those components
+Used REST API to get product JSON data.
+
+
+## Trade-offs
+
+Ran out of time so didn't write unit tests for other components.
+In hindsight, would have used Material UI from the start instead of Bootstrap with some Material.
+If time permitted, would have styled components properly with SASS, using variables for colours, fonts, etc, and removed inline styling.
 
 
 ## License
