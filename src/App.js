@@ -34,8 +34,8 @@ const App = () => {
             <Header homeUrl="/" imgUrl="../images/qantas-logo.png" altText="Qantas logo" />
             <Container>
                 <Row>
-                    <Col sm={8}><Summary product="hotels" quantity={5} location="Sydney"></Summary></Col>
-                    <Col sm={4}><Sort label="Sort by" options={sortOptions} controlId="sortBy" onChange={(evt) => onChangeSort(evt.target.value)}></Sort></Col>
+                    <Col md={8}><Summary product="hotels" quantity={5} location="Sydney"></Summary></Col>
+                    <Col md={4}><Sort label="Sort by" options={sortOptions} controlId="sortBy" onChange={(evt) => onChangeSort(evt.target.value)}></Sort></Col>
                 </Row>
             </Container>
             <Container>
