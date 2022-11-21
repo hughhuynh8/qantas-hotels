@@ -12,10 +12,32 @@ const App = () => {
     const sortOptions = [
         { value: 'price_desc', label: "Price high-low" },
         { value: 'price_asce', label: "Price low-high" },
+        { value: 'rating_asce', label: "Rating low-high" },
+        { value: 'rating_desc', label: "Rating high-low" },
     ]
     const [sorting, setSorting] = useState(sortOptions[0].value)
     const [products, setProducts] = useState([])
-    const showProducts = (sorting === 'price_desc') ? [...products].sort((a, b) => b.offer.displayPrice.amount - a.offer.displayPrice.amount) : [...products].sort((a, b) => a.offer.displayPrice.amount - b.offer.displayPrice.amount)
+    
+    const sortProducts = () => {
+        // sorting methods
+        const sortFunc = {}
+        sortFunc.price_desc = (a, b) => b.offer.displayPrice.amount - a.offer.displayPrice.amount
+        sortFunc.price_asce = (a, b) => a.offer.displayPrice.amount - b.offer.displayPrice.amount
+        sortFunc.rating_asce = (a, b) => a.property.rating.ratingValue - b.property.rating.ratingValue
+        sortFunc.rating_desc = (a, b) => b.property.rating.ratingValue - a.property.rating.ratingValue
+        
+        if(sorting !== undefined) {
+            return [...products].sort(sortFunc[sorting])
+        }
+        else 
+            return [...products]
+    }
+
+
+    const showProducts = sortProducts()
+
+
+
 
     useEffect(() => {
         axios.get('http://localhost:3001/results').then(
