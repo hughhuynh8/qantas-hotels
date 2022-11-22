@@ -6,6 +6,7 @@ import Sort from "./components/controls/Sort";
 import Summary from "./components/controls/Summary";
 import Header from "./components/header/Header";
 import ProductListing from "./components/productlisting/ProductListing"
+import sortingUtil from "./util/sorting"
 import axios from "axios";
 
 const App = () => {
@@ -19,25 +20,26 @@ const App = () => {
     const [products, setProducts] = useState([])
     
     const sortProducts = () => {
-        // sorting methods
-        const sortFunc = {}
-        sortFunc.price_desc = (a, b) => b.offer.displayPrice.amount - a.offer.displayPrice.amount
-        sortFunc.price_asce = (a, b) => a.offer.displayPrice.amount - b.offer.displayPrice.amount
-        sortFunc.rating_asce = (a, b) => a.property.rating.ratingValue - b.property.rating.ratingValue
-        sortFunc.rating_desc = (a, b) => b.property.rating.ratingValue - a.property.rating.ratingValue
+        // define sorting methods using the same name as the sorting options (value)
+        const sortMethod = {}
+        sortMethod.price_desc = (a, b) => 
+            sortingUtil.sortDescendingCallback(a.offer.displayPrice.amount, b.offer.displayPrice.amount)
+        sortMethod.price_asce = (a, b) => 
+            sortingUtil.sortAscendingCallback(a.offer.displayPrice.amount, b.offer.displayPrice.amount)
+        sortMethod.rating_asce = (a, b) => 
+            sortingUtil.sortAscendingCallback(a.property.rating.ratingValue, b.property.rating.ratingValue)
+        sortMethod.rating_desc = (a, b) => 
+            sortingUtil.sortDescendingCallback(a.property.rating.ratingValue, b.property.rating.ratingValue)
         
         if(sorting !== undefined) {
-            return [...products].sort(sortFunc[sorting])
+            // call the sorting method based on their name
+            // e.g. sortMethod["price_asce"] to sort price in ascending order
+            return [...products].sort(sortMethod[sorting])
         }
-        else 
-            return [...products]
+        return [...products]
     }
 
-
     const showProducts = sortProducts()
-
-
-
 
     useEffect(() => {
         axios.get('http://localhost:3001/results').then(
