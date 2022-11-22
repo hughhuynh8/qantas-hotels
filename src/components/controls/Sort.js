@@ -5,7 +5,7 @@ const Sort = ({ label, controlId, options, onChange, onClick }) => {
   return (
     <Form>
       <Form.Group as={Row} className="mb-3" controlId={controlId}>
-        <Form.Label column sm="4" style={{ textAlign: 'right' }}>
+        <Form.Label column sm="4" className='text-sm-left text-right'>
           {label}
         </Form.Label>
         <Col sm="8">
