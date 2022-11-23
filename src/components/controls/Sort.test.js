@@ -1,5 +1,6 @@
 import '@testing-library/jest-dom'
 import { cleanup, fireEvent, render, waitFor, waitForElement } from "@testing-library/react"
+import userEvent from '@testing-library/user-event';
 import Sort from './Sort';
 
 afterEach(cleanup)
@@ -24,15 +25,15 @@ describe('The Sort component', () => {
     expect(sortLabel).toBeVisible();
   });
 
-  it('should call onChange when the first option is selected', async () => {
+  it('should call onChange when the second option is selected', async () => {
     const mockedOnChange = jest.fn();
-    const { getByText, queryByTestId } = render(<Sort
+    const { getByText, getByRole } = render(<Sort
       label="Sort by"
       controlId="sortBy"
       options={mockedOptions}
       onChange={mockedOnChange} />);
 
-      const mySelectComponent = queryByTestId('sortby-component');
+      const mySelectComponent = getByRole("combobox");
 
       expect(mySelectComponent).toBeDefined();
       expect(mySelectComponent).not.toBeNull();
@@ -43,6 +44,10 @@ describe('The Sort component', () => {
       await waitFor(() => getByText('Mocked option 2'));
       const sortOption2 = getByText('Mocked option 2')
       expect(sortOption2).toBeVisible()
+
+      userEvent.selectOptions(mySelectComponent, "mocked-option-2");
+      expect(mySelectComponent).toHaveValue("mocked-option-2");
+      expect(mockedOnChange).toHaveBeenCalledTimes(1);
 
   });
 });
