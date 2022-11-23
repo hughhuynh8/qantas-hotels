@@ -42,12 +42,25 @@ const App = () => {
     const showProducts = sortProducts()
 
     useEffect(() => {
-        axios.get('http://localhost:3001/results').then(
-          (response) => {
-            setProducts(response.data)
-          }, (error) => {
-            console.log(error)
-          });
+        const cancelToken = axios.CancelToken.source()
+
+        axios.get('http://localhost:3001/results', { cancelToken: cancelToken.token })
+            .then((response) => {
+                setProducts(response.data)
+            })
+            .catch(error => {
+                if(axios.isCancel(error)){
+                    console.warn("Cancelled request")
+                }
+                else {
+                    console.warn("Error ", error)
+                }
+            });
+        
+        // clean up
+        return () => {
+            cancelToken.cancel()
+        }
     }, []);
 
     const onChangeSort = (sortValue) => {
